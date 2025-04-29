@@ -11,5 +11,5 @@ demo-calc = []
 
 [dependencies]
 ansiterm = "0.12.1"
+docpos = "0.2.1"
 text_io = "0.1.13"
-si = { path = "si" }

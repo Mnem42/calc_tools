@@ -1,4 +1,4 @@
-use crate::{scale::SIScale, si::SINumber, si::SIUnit};
+use crate::si::{scale::SIScale, si::SINumber, si::SIUnit};
 
 #[test]
 fn scale_factor_test(){

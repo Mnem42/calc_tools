@@ -1,6 +1,6 @@
 use std::{fmt::Display, io::{stdout, Write}};
 
-use si::si::SINumber;
+use crate::si::si::SINumber;
 use text_io::try_read;
 
 /// A warning returned by a calculator.

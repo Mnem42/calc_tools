@@ -1,19 +1,28 @@
 use std::{fmt::Display, num::ParseFloatError, ops::{Div, Mul}, str::FromStr};
 
-use crate::scale::SIScale;
+use crate::si::scale::SIScale;
 
+/// SI unit enum
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SIUnit{
+    /// Farad
     Farad,
+    /// Second
     Second,
+    /// Ohm
     Ohm,
+    /// Metre
     Metre
 }
 
+/// An SI number
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub struct SINumber{
+    /// SI scale
     pub scale: SIScale,
+    /// SI unit
     pub unit: SIUnit,
+    /// Value
     pub val: f64
 }
 
@@ -40,6 +49,7 @@ impl SINumber{
         }
     }
 
+    /// Parse from str
     pub fn from_str(s: &str, unit: SIUnit) -> Result<Self, ParseFloatError> {
         // Get suffix and numeric part
         let suffix: String = s.chars().rev()

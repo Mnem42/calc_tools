@@ -1,5 +1,8 @@
+/// Scale
 pub mod scale;
+
+/// Units
 pub mod si;
 
 #[cfg(test)]
-pub mod tests;
+mod tests;

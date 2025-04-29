@@ -1,16 +1,24 @@
 use std::{fmt::Display, ops::{Div,Mul,Neg}, str::FromStr};
 
+/// A scale factor
 #[derive(Clone, Copy, Debug, PartialEq)]
 pub enum SIScale {
-    Unit,
+    /// Unit
+    Unit, 
+    /// Milli 
     Milli,
-    Micro,
+    /// Micro
+    Micro, 
+    /// Nano
     Nano,
+    /// Pico
     Pico,
+    /// Femto  
     Femto
 }
 
 impl SIScale{
+    /// Get the scale factor
     pub fn get_scale_factor(self) -> f64{
         f64::powi(10.0, match self {
             Self::Unit  => 0,
@@ -22,6 +30,7 @@ impl SIScale{
         })
     }
 
+    /// Get the scale factor, but "inverted" to be 10^-scale.
     pub fn get_inverse_scale_factor(self) -> f64{
         f64::powi(10.0, match self {
             Self::Unit  => 0,
@@ -33,6 +42,7 @@ impl SIScale{
         })
     }
 
+    /// Shift the scale up by one scale factor. if it's already at the maximum, stay there
     pub fn shift_up(self) -> Self{
         match self{
             Self::Unit  => Self::Unit,
@@ -44,6 +54,7 @@ impl SIScale{
         }
     }
 
+    /// Shift the scale down by one scale factor. if it's already at the maximum, stay there
     pub fn shift_down(self) -> Self{
         match self{
             Self::Unit  => Self::Milli,

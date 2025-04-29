@@ -2,7 +2,9 @@
 //! 
 #![warn(missing_docs)]
 
-pub use si;
+/// SI units
+pub mod si;
+
 /// General things that don't really fit anywhere else
 pub mod r#impl;
 
