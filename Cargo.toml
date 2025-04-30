@@ -5,7 +5,6 @@ repository = "https://github.com/Mnem42/calc_tools"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
-readme = "README.md"
 
 [features]
 demo-calc = []
