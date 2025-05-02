@@ -1,5 +1,5 @@
 [package]
-name = "calc_lib"
+name = "calclib"
 description = "A calculator framework designed to be modular"
 repository = "https://github.com/Mnem42/calc_tools"
 version = "0.1.0"
