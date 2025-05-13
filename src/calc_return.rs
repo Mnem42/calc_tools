@@ -1,7 +1,7 @@
 use std::{fmt::Display, io::{stdout, Write}};
 
-use crate::si::si::SINumber;
 use text_io::try_read;
+use uom::si::f32::Length;
 
 /// A warning returned by a calculator.
 pub struct CalcWarning{
@@ -31,7 +31,7 @@ pub enum Value{
     /// Decimal value
     Numeric(f64, String),
     /// SI unit
-    SI(SINumber, String)
+    Length(Length, String)
 }
 
 impl Value{
@@ -50,15 +50,11 @@ impl Value{
 
                 Ok(Value::String(try_read!()?, name.clone()))
             },
-            Value::SI(default, name) => {
+            Value::Length(_, name) => {
                 print!("{}: ", name);
                 stdout().flush().unwrap();
-                let str: String = try_read!()?;
-
-                match SINumber::from_str(&str, default.unit){
-                    Ok(x) => Ok(Value::SI(x, name.clone())),
-                    Err(_) => Ok(Value::SI(*default, name.clone()))
-                }
+                
+                Ok(Value::Length(try_read!()?, name.clone()))
             }
         }
     }
@@ -69,13 +65,9 @@ impl Display for Value{
         match self{
             Self::Numeric(val, name) => write!(f, "{name}: {val:.4}"),
             Self::String(val, name) => write!(f, "{name}: {val}"),
-            Self::SI(val, name) => {
-                let mut tmp = *val;
-                tmp.adjust_scale();
-                write!(f,"{name}: {:.3}{}{}",
-                    -tmp.scale * val.val,
-                    tmp.scale,
-                    tmp.unit
+            Self::Length(val, name) => {
+                write!(f,"{name}: {:#?}",
+                    val
                 )
             }
         }

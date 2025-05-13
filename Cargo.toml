@@ -13,3 +13,4 @@ demo-calc = []
 [dependencies]
 ansiterm = "0.12.1"
 text_io = "0.1.13"
+uom = "0.36.0"
